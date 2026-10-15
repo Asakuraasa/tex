@@ -1,0 +1,218 @@
+% !TeX program = lualatex
+\documentclass[book,paper=a4,fontsize=14pt,openany]{jlreq}
+
+% =========================================================
+% パッケージ設定
+% =========================================================
+\usepackage{luatexja}
+\usepackage{graphicx}          % 画像挿入
+\usepackage{amsmath,amssymb}   % 数式
+\usepackage{booktabs}          % 綺麗な表組み
+\usepackage{cite}              % 引用
+\usepackage{xcolor}            % 色設定
+\usepackage{listings}          % ソースコード掲載（MATLAB等）
+\usepackage{hyperref}          % 目次・参照のハイパーリンク
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue
+}
+
+% ---------------------------------------------------------
+% MATLABコード表示用設定 (listings)
+% ---------------------------------------------------------
+\definecolor{mygreen}{RGB}{28,172,0}
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{
+    language=Matlab,
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    commentstyle=\color{mygreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{mylilas}
+}
+
+% ---------------------------------------------------------
+% 章見出しフォーマット（「第1章」形式）
+% ---------------------------------------------------------
+\ModifyHeading{chapter}{lines=3,label_format={第\arabic{chapter}章}}
+
+% =========================================================
+% 本文開始
+% =========================================================
+\begin{document}
+
+% =========================================================
+% 1. 表紙 (Title Page)
+% =========================================================
+\begin{titlepage}
+    \centering
+    \vspace*{20mm}
+    {\huge 修士論文\par}
+
+    \vspace{25mm}
+    {\huge 人工知能を用いたニキビケアに関する研究\par}
+    
+    \vspace{15mm}
+    {\huge A Study on Acne Management Using Artificial Intelligence\par}
+    
+    \vfill
+    
+    {\huge 2027年3月\par}
+    \vspace{20mm}
+    
+    {\huge 朝倉　慎\par}
+    \vspace{20mm}
+\end{titlepage}
+
+% 前付のページ番号をローマ数字（i, ii, iii...）に設定
+\frontmatter
+
+% =========================================================
+% 2. あらまし
+% =========================================================
+\chapter*{あらまし}
+\addcontentsline{toc}{chapter}{あらまし}
+尋常性痤瘡は，約90％以上の人々が経験する一般的な基礎疾患である．専門機関の受診では専門機器VISIAが用いられる。
+VISIAより安価、一般家庭で診断可能なシステム構築
+\clearpage
+
+% =========================================================
+% 3. 目次 (Table of Contents)
+% =========================================================
+\tableofcontents
+\clearpage
+
+% 本文のページ番号をアラビア数字（1, 2, 3...）に設定
+\mainmatter
+
+% =========================================================
+% 4. 本編
+% =========================================================
+
+% ---------------------------------------------------------
+\chapter{序論}
+% ---------------------------------------------------------
+\section{研究の背景}
+情報社会の発展に伴い……
+
+\section{本研究の目的}
+既存の研究では……
+
+\section{本論文の構成}
+本論文は全6章から構成される．第2章では……
+
+% ---------------------------------------------------------
+\chapter{関連研究}
+% ---------------------------------------------------------
+\section{画像処理の基本原理}
+\section{関連研究の動向}
+\section{既存手法の限界}
+
+% ---------------------------------------------------------
+\chapter{紫外線画像の二値化技術}
+% ---------------------------------------------------------
+\section{提案アルゴリズムの概要}
+\section{実験設定}
+\section{実験結果}
+
+% ---------------------------------------------------------
+\chapter{時系列データへの応用}
+% ---------------------------------------------------------
+\section{実環境データへの応用展開}
+\section{他手法との詳細な比較検証}
+\section{実験結果}
+
+% ---------------------------------------------------------
+\chapter{考察}
+% ---------------------------------------------------------
+\section{得られた知見の総括}
+\section{提案手法の適用限界と課題}
+
+% ---------------------------------------------------------
+\chapter{結論}
+% ---------------------------------------------------------
+\section{研究の総括}
+\section{今後の展望}
+
+% 後付の開始
+\backmatter
+
+% =========================================================
+% 5. 謝辞
+% =========================================================
+\chapter{謝辞}
+本研究の遂行および本論文の執筆にあたり，終始熱心なご指導と温かいご助言を賜りました〇〇教授に心より感謝申し上げます．
+また，副査として貴重なご意見をいただきました審査委員の諸先生方に深く御礼申し上げます．
+日頃から有益な議論を交わし，研究生活を支えてくださった研究室の皆様，ならびに長きにわたり温かく見守ってくれた家族に深く感謝いたします．
+
+% =========================================================
+% 6. 参考文献
+% =========================================================
+\begin{thebibliography}{99}
+\addcontentsline{toc}{chapter}{参考文献}
+
+\bibitem{ref1}
+著者名, ``論文題目,'' ジャーナル名, vol. XX, no. XX, pp. 100--108, 2024.
+
+\bibitem{ref2}
+A. Author and B. Author, ``Title of the Conference Paper,'' in \textit{Proc. IEEE ICIP}, 2025, pp. 1234--1238.
+
+\end{thebibliography}
+
+% =========================================================
+% 7. 付録 (Appendix)
+% =========================================================
+\appendix
+\chapter{MATLAB実装コード}
+
+本研究で用いた輝度解析スクリプトのコア部分を以下に示す．
+
+\begin{lstlisting}[caption=輝度チェックおよび特徴量抽出コード, label=code:matlab_sample]
+% 画像の読み込みとグレースケール変換
+img = imread('sample.png');
+if size(img, 3) == 3
+    gray_img = rgb2gray(img);
+else
+    gray_img = img;
+end
+
+% 輝度平均値の計算
+mean_luminance = mean(gray_img(:));
+fprintf('Mean Luminance: %.2f\n', mean_luminance);
+\end{lstlisting}
+
+% =========================================================
+% 8. 研究業績 (List of Publications)
+% =========================================================
+\chapter{研究業績}
+
+\section*{学術雑誌（査読あり）}
+\begin{enumerate}
+    \item 著者名, ``論文タイトル,'' 学会誌名, vol. 10, no. 2, pp. 50--60, 2026.
+\end{enumerate}
+
+\section*{国際会議（査読あり）}
+\begin{enumerate}
+    \item T. Dentsu and H. Yamada, ``Fast Image Enhancement Algorithm using Gradient Prior,'' in \textit{Proc. IEEE International Conference on Image Processing (ICIP)}, 2025.
+\end{enumerate}
+
+\section*{国内学会発表}
+\begin{enumerate}
+    \item 電大 太郎, 山田 太郎, ``画像一括処理のための新規パイプラインの構築,'' 〇〇学会全国大会, 2024.
+\end{enumerate}
+
+\end{document}
